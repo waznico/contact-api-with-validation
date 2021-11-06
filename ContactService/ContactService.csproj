@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MediatR" />
+    <None Remove="FluentValidation" />
+    <None Remove="Autofac" />
+    <None Remove="Autofac.Extensions.DependencyInjection" />
+    <None Remove="Models\" />
+    <None Remove="Models\Request\" />
+    <None Remove="Models\Database\" />
+    <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Services\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Application\" />
+    <None Remove="Infrastructure\Autofac\" />
+    <None Remove="Application\Mediator\" />
+    <None Remove="Application\Mediator\Command\" />
+    <None Remove="Application\Mediator\Handler\" />
+    <None Remove="Application\Mediator\Validators\" />
+    <None Remove="Application\Mediator\Pipeline\" />
+    <None Remove="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.4" />
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Models\Request\" />
+    <Folder Include="Models\Database\" />
+    <Folder Include="Services\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Application\" />
+    <Folder Include="Infrastructure\AppModules\" />
+    <Folder Include="Application\Mediator\" />
+    <Folder Include="Application\Mediator\Commands\" />
+    <Folder Include="Application\Mediator\Handler\" />
+    <Folder Include="Application\Mediator\Validations\" />
+    <Folder Include="Application\Mediator\Pipelines\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+</Project>
