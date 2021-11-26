@@ -4,6 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="MediatR" />
     <None Remove="FluentValidation" />
@@ -23,13 +26,21 @@
     <None Remove="Application\Mediator\Validators\" />
     <None Remove="Application\Mediator\Pipeline\" />
     <None Remove="Exceptions\" />
+    <None Remove="Infrastructure\Database\" />
+    <None Remove="Microsoft.EntityFrameworkCore.Design" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="FluentValidation" Version="10.3.4" />
     <PackageReference Include="Autofac" Version="6.3.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -38,12 +49,13 @@
     <Folder Include="Services\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Application\" />
-    <Folder Include="Infrastructure\AppModules\" />
+    <Folder Include="Infrastructure\AutofacModules\" />
     <Folder Include="Application\Mediator\" />
     <Folder Include="Application\Mediator\Commands\" />
     <Folder Include="Application\Mediator\Handler\" />
     <Folder Include="Application\Mediator\Validations\" />
     <Folder Include="Application\Mediator\Pipelines\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Infrastructure\Database\" />
   </ItemGroup>
 </Project>

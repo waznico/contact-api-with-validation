@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using ContactService.Infrastructure.AppModules;
+using ContactService.Infrastructure.AutofacModules;
+using ContactService.Infrastructure.Database;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,10 +12,7 @@ namespace ContactService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -22,6 +20,7 @@ namespace ContactService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
+            services.AddDbContext<ContactContext>();
             services.AddControllers();
         }
 

@@ -33,11 +33,11 @@ namespace ContactService.Controllers
             }
             catch (MediatorValidationException ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                throw;
+                return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
     }
