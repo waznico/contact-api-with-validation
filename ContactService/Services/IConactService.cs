@@ -1,7 +1,10 @@
-﻿using System;
-namespace ContactService
+﻿using System.Threading.Tasks;
+using ContactService.Application.Mediator.Commands;
+
+namespace ContactService.Services
 {
-    public interface IConactService
+    public interface IContactService
     {
+        Task<bool> SaveContactForm(AddContactRequestCommand request);
     }
 }
