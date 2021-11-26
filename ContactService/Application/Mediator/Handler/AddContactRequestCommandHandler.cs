@@ -2,16 +2,20 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ContactService.Application.Mediator.Commands;
+using ContactService.Services;
 using MediatR;
 
 namespace ContactService.Application.Mediator.Handler
 {
     public class AddContactRequestCommandHandler : IRequestHandler<AddContactRequestCommand, bool>
     {
-        public async Task<bool> Handle(AddContactRequestCommand request, CancellationToken cancellationToken)
+        private readonly IContactService _contactService;
+
+        public AddContactRequestCommandHandler(IContactService contactService)
         {
-            //throw new NotImplementedException();
-            return true;
+            _contactService = contactService ?? throw new ArgumentNullException(nameof(contactService));
         }
+
+        public async Task<bool> Handle(AddContactRequestCommand request, CancellationToken cancellationToken) => await _contactService.SaveContactForm(request);
     }
 }
