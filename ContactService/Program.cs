@@ -29,7 +29,7 @@ namespace ContactService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseKestrel(c => c.ListenLocalhost(5001));
+                    webBuilder.UseKestrel(c => c.ListenAnyIP(5001));
                 });
     }
 }
