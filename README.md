@@ -18,3 +18,6 @@ The structure of docker-compose works as follows:
 In docker-compose.override.yml I defined a connection string to the database When I run `docker compose up`
 the override file is automatically processed. In the configuration file the connection string is set and
 accessible in the Startup class to setup the database connection.
+
+The port for the sql container doesn't have to be open. It's only for learning purposes to have the possiblity
+to see what's going on in the database.
