@@ -1,0 +1,27 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  sql-data-debug:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - 1433:1433
+
+  contactservice-debug:
+    image: contactservice
+    build:
+      context: .
+      dockerfile: ContactService/Dockerfile
+    ports:
+      - 5001:5001
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=sql-data-debug;Database=ContactDb;User Id=sa;Password=Pass@word
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - sql-data-debug
