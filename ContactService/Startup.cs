@@ -1,9 +1,12 @@
-﻿using Autofac;
+﻿using System;
+using System.Reflection;
+using Autofac;
 using ContactService.Infrastructure.AutofacModules;
 using ContactService.Infrastructure.Database;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,8 +22,18 @@ namespace ContactService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine($"Connection String in configuration: {Configuration["ConnectionString"]}");
             services.AddMediatR(typeof(Startup));
-            services.AddDbContext<ContactContext>();
+
+             services.AddDbContext<ContactContext>(options =>
+                    options.UseSqlServer(Configuration["ConnectionString"],
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                        //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    }));
+
             services.AddControllers();
         }
 
